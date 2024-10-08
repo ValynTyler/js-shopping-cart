@@ -13,3 +13,8 @@ body {
 p {
     width: 50%;
 }
+
+#cart {
+    display: flex;
+    flex-direction: column;
+}
