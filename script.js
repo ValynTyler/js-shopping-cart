@@ -4,21 +4,17 @@ import ShoppingCartItem from "./src/ShoppingCartItem.js";
 const itm_element = document.querySelector("#item-select");
 const qty_element = document.querySelector("#quantity");
 const cart_element = document.querySelector("#cart");
+const cart_item_template = document.querySelector('#cart-item-template')
 
 let cart = new ShoppingCart();
 
 function refresh() {
   cart_element.innerHTML = "";
   cart.contents.forEach((element) => {
-    cart_element.innerHTML += `
-    <div class="cart-item">
-      <div class="cart-item-name">
-        id: ${element.id}
-      </div>
-      <div class="cart-item-quantity">
-        quantity: ${element.quantity}
-      </div>
-    </div>`;
+    const clone = cart_item_template.content.cloneNode(true)
+    clone.querySelector(".cart-item-id").innerHTML = element.id
+    clone.querySelector(".cart-item-quantity").innerHTML = element.quantity
+    cart_element.appendChild(clone)
   });
 }
 
