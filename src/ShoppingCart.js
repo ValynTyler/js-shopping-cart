@@ -8,7 +8,9 @@ export default class ShoppingCart {
   add(entry) {
     for (var i in this.contents) {
       if (entry.id == this.contents[i].id) {
-        this.contents[i].quantity = parseInt(this.contents[i].quantity) + parseInt(entry.quantity);
+        const entry_quantity = parseInt(entry.quantity)
+        const cart_quantity = parseInt(this.contents[i].quantity)
+        this.contents[i].quantity = cart_quantity + entry_quantity;
         return;
       }
     }
