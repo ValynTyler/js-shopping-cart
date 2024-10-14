@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <form method="get">
+    <form id="store" method="get">
       <select name="itm" id="item-select" required>
         <option disabled selected value></option>
         <option value="qwer">qwer</option>
@@ -19,7 +19,7 @@
     </form>
     <div id="cart"></div>
     <template id="cart-item-template">
-      <div id="cart-item">
+      <div class="cart-item">
         <div class="cart-item-id"></div>
         <div class="cart-item-quantity"></div>
         <input type="button" value="remove">
