@@ -15,7 +15,9 @@ function refresh() {
     clone.querySelector(".cart-item-id").innerHTML = item.id
     clone.querySelector(".cart-item-quantity").innerHTML = item.quantity
     clone.querySelector(".remove").onclick = () => {
-      console.log("hi");
+      cart.remove(item.id)
+      cart.writeLocal()
+      refresh()
     }
     cart_element.appendChild(clone)
   });
@@ -23,20 +25,12 @@ function refresh() {
 
 document.querySelector("#add").addEventListener("click", () => {
   cart.add(new ShoppingCartItem(itm_element.value, qty_element.value));
-
-  cart.contents.forEach(item => {
-    localStorage.setItem(item.id, item.quantity)
-  });
-
+  cart.writeLocal()
   refresh()
 });
 
 window.addEventListener("load", () => {
   console.log("Reloading cart contents...");
-  for (var i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i)
-    const val = localStorage.getItem(key)
-    cart.add(new ShoppingCartItem(key, val))
-    refresh()
-  } 
+  cart.readLocal()
+  refresh()
 });
