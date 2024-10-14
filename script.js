@@ -10,10 +10,13 @@ let cart = new ShoppingCart();
 
 function refresh() {
   cart_element.innerHTML = "";
-  cart.contents.forEach((element) => {
+  cart.contents.forEach((item) => {
     const clone = cart_item_template.content.cloneNode(true)
-    clone.querySelector(".cart-item-id").innerHTML = element.id
-    clone.querySelector(".cart-item-quantity").innerHTML = element.quantity
+    clone.querySelector(".cart-item-id").innerHTML = item.id
+    clone.querySelector(".cart-item-quantity").innerHTML = item.quantity
+    clone.querySelector(".remove").onclick = () => {
+      console.log("hi");
+    }
     cart_element.appendChild(clone)
   });
 }
@@ -21,8 +24,8 @@ function refresh() {
 document.querySelector("#add").addEventListener("click", () => {
   cart.add(new ShoppingCartItem(itm_element.value, qty_element.value));
 
-  cart.contents.forEach(element => {
-    localStorage.setItem(element.id, element.quantity)
+  cart.contents.forEach(item => {
+    localStorage.setItem(item.id, item.quantity)
   });
 
   refresh()
